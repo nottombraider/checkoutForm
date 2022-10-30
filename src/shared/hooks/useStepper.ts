@@ -1,5 +1,5 @@
 import { useNumber } from "react-hanger/array";
-import { steps } from "../consts";
+import { steps } from "../../PaymentModal/FormSteps";
 
 export const useStepper = () => {
   const upperLimit = steps.length;
