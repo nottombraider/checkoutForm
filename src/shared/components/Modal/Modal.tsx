@@ -22,7 +22,9 @@ export const Modal = ({ onClose, children }: ModalProps): JSX.Element => (
       <Button variant="icon" className="text-white self-end" onClick={onClose}>
         <IoClose className="w-5 h-5" />
       </Button>
-      <main className="px-6">{children}</main>
+      <main className="px-6 max-h-[calc(100vh-7.75rem)] overflow-y-auto scrollbar">
+        {children}
+      </main>
       <footer className="px-6 text-gray-200 text-xs">
         <div className="flex">
           <div className="flex items-center gap-2">
