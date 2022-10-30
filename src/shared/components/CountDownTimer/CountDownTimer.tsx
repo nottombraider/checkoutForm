@@ -12,5 +12,5 @@ const format = (seconds: number) => {
 export const CountDownTimer = (): JSX.Element => {
   const seconds = useCountdown(TIMER_25_MINUTES_IN_SECONDS);
 
-  return <span>{format(seconds)}</span>;
+  return <span className="text-yellow-300">{format(seconds)}</span>;
 };
