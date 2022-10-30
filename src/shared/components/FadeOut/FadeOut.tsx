@@ -9,7 +9,7 @@ export const FadeOut = ({ children, action }: FadeOutProps): JSX.Element => {
   const handleToggle = (callback: VoidFunction) => {
     toggle();
 
-    setTimeout(callback, 700);
+    setTimeout(callback, 300);
   };
 
   return (
@@ -22,9 +22,11 @@ export const FadeOut = ({ children, action }: FadeOutProps): JSX.Element => {
           }
         )}
       >
-        {typeof children === "function" ? children(handleToggle) : children}
+        {typeof children === "function"
+          ? children(fadeOut, handleToggle)
+          : children}
       </div>
-      {typeof action === "function" ? action(handleToggle) : action}
+      {typeof action === "function" ? action(fadeOut, handleToggle) : action}
     </>
   );
 };

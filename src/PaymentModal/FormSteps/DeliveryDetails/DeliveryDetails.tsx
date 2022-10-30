@@ -8,6 +8,7 @@ import {
   MdOutlineModeComment,
   TbMailbox,
 } from "react-icons/all";
+import classnames from "classnames";
 
 import {
   Button,
@@ -15,63 +16,70 @@ import {
   MaskedTextInputField,
   TextAreaField,
   TextInputField,
+  FadeOut,
 } from "../../../shared";
 import { deliveryDetailsStepNames } from "./deliveryDetailsFieldNames";
-import { UseNumberActions } from "react-hanger/array";
+import { GoNextStepFn } from "../consts/types";
 
 export const DeliveryDetails = ({
   goNextStep,
 }: {
-  goNextStep: UseNumberActions["increase"];
-}): JSX.Element => (
-  <>
-    <TextInputField
-      name={deliveryDetailsStepNames.fullName}
-      placeholder="Name"
-      startIcon={<IoPersonOutline className={fieldIcon} />}
-    />
-    <MaskedTextInputField
-      mask="+7 (999) 999-99-99"
-      maskChar=""
-      name={deliveryDetailsStepNames.phoneNumber}
-      placeholder="Phone number"
-      startIcon={<HiOutlineDevicePhoneMobile className={fieldIcon} />}
-    />
-    <TextInputField
-      name={deliveryDetailsStepNames.zip}
-      placeholder="Zip"
-      type="number"
-      startIcon={<TbMailbox className={fieldIcon} />}
-    />
-    <TextInputField
-      name={deliveryDetailsStepNames.region}
-      placeholder="Region"
-      startIcon={<BiFlag className={fieldIcon} />}
-    />
-    <TextInputField
-      name={deliveryDetailsStepNames.city}
-      placeholder="City"
-      startIcon={<IoLocationOutline className={fieldIcon} />}
-    />
-    <TextInputField
-      name={deliveryDetailsStepNames.street}
-      placeholder="Street name"
-      startIcon={<IoHomeOutline className={fieldIcon} />}
-    />
-    <TextAreaField
-      name={deliveryDetailsStepNames.orderComment}
-      placeholder="Order comment"
-      startIcon={<MdOutlineModeComment className={fieldIcon} />}
-    />
-    <Button
-      className="mt-5"
-      onClick={(e) => {
-        e.preventDefault();
+  goNextStep: GoNextStepFn;
+}): JSX.Element => {
+  return (
+    <FadeOut
+      action={(fadeOut, toggle) => (
+        <Button
+          disabled={fadeOut}
+          className={classnames("mt-5", { "cursor-none": fadeOut })}
+          onClick={(e) => {
+            e.preventDefault();
 
-        goNextStep();
-      }}
+            toggle(goNextStep);
+          }}
+        >
+          Next
+        </Button>
+      )}
     >
-      Next
-    </Button>
-  </>
-);
+      <TextInputField
+        name={deliveryDetailsStepNames.fullName}
+        placeholder="Name"
+        startIcon={<IoPersonOutline className={fieldIcon} />}
+      />
+      <MaskedTextInputField
+        mask="+7 (999) 999-99-99"
+        maskChar=""
+        name={deliveryDetailsStepNames.phoneNumber}
+        placeholder="Phone number"
+        startIcon={<HiOutlineDevicePhoneMobile className={fieldIcon} />}
+      />
+      <TextInputField
+        name={deliveryDetailsStepNames.zip}
+        placeholder="Zip"
+        type="number"
+        startIcon={<TbMailbox className={fieldIcon} />}
+      />
+      <TextInputField
+        name={deliveryDetailsStepNames.region}
+        placeholder="Region"
+        startIcon={<BiFlag className={fieldIcon} />}
+      />
+      <TextInputField
+        name={deliveryDetailsStepNames.city}
+        placeholder="City"
+        startIcon={<IoLocationOutline className={fieldIcon} />}
+      />
+      <TextInputField
+        name={deliveryDetailsStepNames.street}
+        placeholder="Street name"
+        startIcon={<IoHomeOutline className={fieldIcon} />}
+      />
+      <TextAreaField
+        name={deliveryDetailsStepNames.orderComment}
+        placeholder="Order comment"
+        startIcon={<MdOutlineModeComment className={fieldIcon} />}
+      />
+    </FadeOut>
+  );
+};

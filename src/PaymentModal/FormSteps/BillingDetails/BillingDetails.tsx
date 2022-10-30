@@ -12,19 +12,35 @@ import {
   fieldIcon,
   TextInputField,
   useSyncBillingWithDeliveryAddress,
+  FadeOut,
 } from "../../../shared";
 import { billingDetailsStepNames } from "./billingDetailsFieldNames";
-import { UseNumberActions } from "react-hanger/array";
+import { GoNextStepFn } from "../consts/types";
+import classnames from "classnames";
 
 export const BillingAddress = ({
   goNextStep,
 }: {
-  goNextStep: UseNumberActions["increase"];
+  goNextStep: GoNextStepFn;
 }): JSX.Element => {
   useSyncBillingWithDeliveryAddress();
 
   return (
-    <>
+    <FadeOut
+      action={(fadeOut, toggle) => (
+        <Button
+          disabled={fadeOut}
+          className={classnames("mt-5", { "cursor-none": fadeOut })}
+          onClick={(e) => {
+            e.preventDefault();
+
+            toggle(goNextStep);
+          }}
+        >
+          Next
+        </Button>
+      )}
+    >
       <CheckboxField
         name={billingDetailsStepNames.billingAsDelivery}
         labelText={
@@ -54,16 +70,6 @@ export const BillingAddress = ({
         placeholder="Street name"
         startIcon={<IoHomeOutline className={fieldIcon} />}
       />
-      <Button
-        className="mt-5"
-        onClick={(e) => {
-          e.preventDefault();
-
-          goNextStep();
-        }}
-      >
-        Next
-      </Button>
-    </>
+    </FadeOut>
   );
 };
