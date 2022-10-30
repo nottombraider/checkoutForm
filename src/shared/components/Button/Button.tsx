@@ -1,5 +1,4 @@
 import { ButtonProps } from "./Button.types";
-import classnames from "classnames";
 import { buttonStyles } from "./Button.styles";
 
 export const Button = ({
