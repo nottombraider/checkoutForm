@@ -17,16 +17,77 @@ body, #root{
 }
 
 .scrollbar::-webkit-scrollbar-track {
-
    background-color: transparent;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
     background-color: #efefef;
     border-radius: 1rem;
-
 }
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
     background-color: #374151;
+}
+
+
+
+.animation-in {
+    transform: scaleY(.01) scaleX(0);
+    animation: unfoldIn 1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.modal-animation-in {
+    transform:scale(0);
+    animation: zoomIn .5s .8s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.animation-out {
+    transform: scale(1);
+    animation: unfoldOut 1s .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+.modal-animation-out {
+    animation: zoomOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+}
+
+@keyframes unfoldIn {
+    0% {
+        transform:scaleY(.005) scaleX(0);
+    }
+    50% {
+        transform:scaleY(.005) scaleX(1);
+    }
+    100% {
+        transform:scaleY(1) scaleX(1);
+    }
+}
+
+@keyframes unfoldOut {
+    0% {
+        transform:scaleY(1) scaleX(1);
+    }
+    50% {
+        transform:scaleY(.005) scaleX(1);
+    }
+    100% {
+        transform:scaleY(.005) scaleX(0);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform:scale(0);
+    }
+    100% {
+        transform:scale(1);
+    }
+}
+
+@keyframes zoomOut {
+    0% {
+        transform:scale(1);
+    }
+    100% {
+        transform:scale(0);
+    }
 }

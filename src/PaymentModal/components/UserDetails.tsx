@@ -5,14 +5,14 @@ import { FormBody, paymentMethodValidationSchema } from "../FormSteps";
 
 export const UserDetails = (): JSX.Element => {
   return (
-    <main className="h-full overflow-auto scrollbar md:pr-4 rounded w-full md:w-[fit-content]">
+    <main className="h-full overflow-x-hidden overflow-y-auto scrollbar md:pr-4 rounded w-full md:w-[fit-content]">
       <Form
         resolver={yupResolver(paymentMethodValidationSchema)}
         onSubmit={() => (formValues) => {
           console.log("formValues:", formValues);
         }}
         mode="onChange"
-        className="h-full rounded"
+        className="h-full overflow-x-hidden rounded scrollbar"
       >
         <FormBody />
       </Form>
