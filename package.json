@@ -18,7 +18,9 @@
     "react-hook-form": "7.38.0",
     "react-icons": "^4.6.0",
     "react-input-mask": "2.0.4",
-    "twind": "0.16.17"
+    "twind": "0.16.17",
+    "yup": "0.32.11",
+    "@hookform/resolvers": "2.8.3"
   },
   "devDependencies": {
     "@types/react": "18.0.17",
