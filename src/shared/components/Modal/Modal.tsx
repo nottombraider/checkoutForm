@@ -1,11 +1,11 @@
 import React from "react";
+import classnames from "classnames";
 import { IoClose } from "react-icons/all";
+import { useBoolean } from "react-hanger/array";
 
 import { Button } from "../Button";
 import { ModalProps } from "./Modal.types";
 import { ModalFooter } from "./ModalFooter";
-import { useBoolean } from "react-hanger/array";
-import classnames from "classnames";
 
 export const Modal = ({ onClose, children }: ModalProps): JSX.Element => {
   const [isClose, { toggle }] = useBoolean(false);
