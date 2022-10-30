@@ -1,4 +1,5 @@
 import React from "react";
+import { CountDownTimer } from "../../shared";
 
 export const OrderInfo = (): JSX.Element => (
   <header className="text-white flex flex-col gap-3">
@@ -8,7 +9,9 @@ export const OrderInfo = (): JSX.Element => (
       <div className="text-yellow-300 uppercase text-xs">Your order</div>
       <div className="text-xl">Product Name</div>
     </div>
-    <div className="mt-4 text-sm">Pay during next 24:59</div>
+    <div className="mt-4 text-sm">
+      Pay during next <CountDownTimer />
+    </div>
     <div className="mt-auto w-44">
       <div className="text-yellow-300 uppercase text-xs">
         Additional Payment Info
