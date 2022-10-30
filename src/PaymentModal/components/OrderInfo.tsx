@@ -12,7 +12,7 @@ export const OrderInfo = (): JSX.Element => (
     <div className="mt-4 text-sm">
       Pay during next <CountDownTimer />
     </div>
-    <div className="mt-auto w-44">
+    <div className="mt-auto mb-2 md:mb-0 md:w-44">
       <div className="text-yellow-300 uppercase text-xs">
         Additional Payment Info
       </div>

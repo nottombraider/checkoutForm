@@ -8,7 +8,7 @@ export const PaymentModal = ({
 }: PaymentModalProps): JSX.Element | null => {
   return (
     <Modal onClose={onClose}>
-      <section className="p-6 pr-2 max-w-[35rem] flex bg-indigo-700 justify-between rounded-md h-full">
+      <section className="p-1 bg-indigo-700 flex flex-wrap justify-between rounded-md md:h-full md:p-6 md:pr-2 md:w-[35rem]">
         <OrderInfo />
         <UserDetails />
       </section>

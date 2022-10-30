@@ -1,9 +1,9 @@
 import React from "react";
 import "animate.css";
+import { useBoolean } from "react-hanger/array";
 
 import { Button } from "./shared";
 import { PaymentModal } from "./PaymentModal/PaymentModal";
-import { useBoolean } from "react-hanger/array";
 
 const App = (): JSX.Element => {
   const [isModalOpen, { toggle }] = useBoolean(false);
