@@ -17,3 +17,6 @@ export const sharedFieldStyles = (
 export const errorMessage = "text-xs text-red-600";
 
 export const fieldIcon = "w-3 my-1 mx-2 absolute";
+
+export const endIconIdentifier =
+  "absolute right-2 top-1 animate__animated animate__zoomIn animate__delay-1s";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   FieldError,
   FieldValues,
@@ -7,7 +7,15 @@ import {
 } from "react-hook-form";
 
 import { InputBaseProps } from "./types";
-import { errorMessage, sharedFieldWrapper, sharedFieldStyles } from "./consts";
+import {
+  errorMessage,
+  sharedFieldWrapper,
+  sharedFieldStyles,
+  endIconIdentifier,
+} from "./styles";
+import { BsCheck2, IoClose } from "react-icons/all";
+import classnames from "classnames";
+import { FieldErrorIcon, FieldValidIcon } from "./components";
 
 type TextAreaFieldOwnProps<TDataType> = Pick<
   JSX.IntrinsicElements["textarea"],
@@ -15,11 +23,14 @@ type TextAreaFieldOwnProps<TDataType> = Pick<
 > &
   InputBaseProps<TDataType>;
 
-export type TextAreaFieldProps<TDataType> = TextAreaFieldOwnProps<TDataType>;
+export type TextAreaFieldProps<TDataType> = TextAreaFieldOwnProps<TDataType> & {
+  startIcon?: ReactNode;
+};
 
 export const TextAreaField = <TDataType,>({
   name,
   className,
+  startIcon,
   ...props
 }: TextAreaFieldProps<TDataType>): JSX.Element => {
   if (typeof name !== "string")
@@ -34,14 +45,21 @@ export const TextAreaField = <TDataType,>({
 
   const fieldError = fieldState.error as unknown as FieldError | undefined;
   const isError = Boolean(fieldError?.message);
+  const isValid = Boolean(!isError && field.value && fieldState.isDirty);
 
   return (
     <div className={sharedFieldWrapper}>
+      {startIcon}
       <textarea
         {...props}
         {...field}
-        className={`${sharedFieldStyles(isError)} resize-y`}
+        className={classnames(
+          "min-h-[3rem] resize-none",
+          sharedFieldStyles(isError, Boolean(startIcon), isValid)
+        )}
       />
+      {isValid && <FieldValidIcon />}
+      {isError && <FieldErrorIcon />}
       {isError && <span className={errorMessage}>{fieldError?.message}</span>}
     </div>
   );

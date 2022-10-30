@@ -7,7 +7,15 @@ import {
 } from "react-hook-form";
 
 import { InputBaseProps } from "./types";
-import { errorMessage, sharedFieldWrapper, sharedFieldStyles } from "./consts";
+import {
+  errorMessage,
+  sharedFieldWrapper,
+  sharedFieldStyles,
+  endIconIdentifier,
+} from "./styles";
+import { FcCheckmark, IoClose } from "react-icons/all";
+import classnames from "classnames";
+import { FieldErrorIcon, FieldValidIcon } from "./components";
 
 type TextInputFieldOwnProps<TDataType> = InputBaseProps<TDataType>;
 
@@ -17,6 +25,7 @@ export type TextInputFieldProps<TDataType> =
 export const TextInputField = <TDataType,>({
   name,
   startIcon,
+  className,
   ...props
 }: TextInputFieldProps<TDataType>): JSX.Element => {
   if (typeof name !== "string")
@@ -32,6 +41,7 @@ export const TextInputField = <TDataType,>({
 
   const fieldError = fieldState.error as unknown as FieldError | undefined;
   const isError = Boolean(fieldError?.message);
+  const isValid = Boolean(!isError && value);
 
   return (
     <div className={sharedFieldWrapper}>
@@ -40,8 +50,13 @@ export const TextInputField = <TDataType,>({
         {...props}
         {...handlers}
         value={value}
-        className={sharedFieldStyles(isError)}
+        className={classnames(
+          sharedFieldStyles(isError, Boolean(startIcon), isValid),
+          className
+        )}
       />
+      {isValid && <FieldValidIcon />}
+      {isError && <FieldErrorIcon />}
       {isError && <span className={errorMessage}>{fieldError?.message}</span>}
     </div>
   );

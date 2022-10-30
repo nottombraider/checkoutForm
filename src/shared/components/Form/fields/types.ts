@@ -1,5 +1,5 @@
 export type InputBaseProps<TDataType> = Readonly<
-	Pick<JSX.IntrinsicElements["input"], "className" | "placeholder"> & {
-		name: keyof TDataType;
-	}
+  Pick<JSX.IntrinsicElements["input"], "className" | "placeholder" | "type"> & {
+    name: keyof TDataType;
+  }
 >;
