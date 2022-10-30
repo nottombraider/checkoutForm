@@ -10,9 +10,7 @@ const App = (): JSX.Element => {
 
   return (
     <section className="p-10">
-      <Button onClick={toggle} className="px-6">
-        Pay
-      </Button>
+      <Button onClick={toggle}>Pay</Button>
       {isModalOpen && <PaymentModal onClose={toggle} />}
     </section>
   );

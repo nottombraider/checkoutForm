@@ -13,7 +13,7 @@ export const FormBody = (): JSX.Element => {
   return (
     <div
       key={stepNumber}
-      className="flex flex-col gap-2 px-6 py-4 bg-white w-[17rem] rounded shadow-md min-h-[90%]"
+      className="flex flex-col gap-2 px-6 py-4 bg-white w-[17rem] rounded shadow-md"
     >
       <FormHeader title={steps[stepNumber].title} goBackStep={goBackStep} />
       {steps[stepNumber].render(goNextStep)}
